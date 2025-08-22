@@ -19,7 +19,21 @@ public class GameLogic {
      *              if no merge occurs, then return 0.
      */
     public static int moveTileUpAsFarAsPossible(int[][] board, int r, int c, int minR) {
-        // TODO: Fill this in in tasks 2, 3, 4
+        while (r > 0) {
+            if (minR < r) {
+                r--;
+            } else {
+                return 0;
+            }
+            if (board[r][c] == 0) {
+                board[r][c] = board[r + 1][c];
+                board[r + 1][c] = 0;
+            } else if (board[r][c] == board[r + 1][c]) {
+                board[r][c] = board[r][c] * 2;
+                board[r + 1][c] = 0;
+                return r + 1;
+            }
+        }
         return 0;
     }
 
@@ -31,7 +45,14 @@ public class GameLogic {
      * @param c         the column to tilt up.
      */
     public static void tiltColumn(int[][] board, int c) {
-        // TODO: fill this in in task 5
+        int row = 0, minR = 0, value = 0;
+        while (row < board.length) {
+            value = moveTileUpAsFarAsPossible(board, row, c, minR);
+            if (value != 0) {
+                minR = value;
+            }
+            row++;
+        }
         return;
     }
 
@@ -41,7 +62,11 @@ public class GameLogic {
      * @param board     the current state of the board.
      */
     public static void tiltUp(int[][] board) {
-        // TODO: fill this in in task 6
+        int c = 0;
+        while (c < board.length) {
+            tiltColumn(board, c);
+            c++;
+        }
         return;
     }
 
@@ -53,15 +78,27 @@ public class GameLogic {
      * @param side  the direction to tilt
      */
     public static void tilt(int[][] board, Side side) {
-        // TODO: fill this in in task 7
         if (side == Side.EAST) {
+            rotateLeft(board);
+            tiltUp(board);
+            rotateRight(board);
             return;
         } else if (side == Side.WEST) {
+            rotateRight(board);
+            tiltUp(board);
+            rotateLeft(board);
             return;
         } else if (side == Side.SOUTH) {
+            rotateLeft(board);
+            rotateLeft(board);
+            tiltUp(board);
+            rotateLeft(board);
+            rotateLeft(board);
             return;
         } else {
+            tiltUp(board);
             return;
         }
+
     }
 }
