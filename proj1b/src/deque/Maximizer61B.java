@@ -1,5 +1,6 @@
 package deque;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class Maximizer61B {
     /**
@@ -9,9 +10,21 @@ public class Maximizer61B {
      * @param iterable  the Iterable of T
      * @return          the maximum element
      */
-    public static <T extends Comparable<T>> T max(Iterable<T> iterable) {
-        return null;
+    public static<T extends Comparable<T>> T max(Iterable<T> iterable) {
+        T maxItem = null;
+        Iterator<T> seer = iterable.iterator();
+        if (seer.hasNext()) {
+            maxItem = seer.next();
+        }
+        for (T item : iterable) {
+            int cmp = item.compareTo(maxItem);
+            if (cmp > 0) {
+                maxItem = item;
+            }
+        }
+        return maxItem;
     }
+
 
     /**
      * Returns the maximum element from the given iterable according to the specified comparator.
@@ -21,18 +34,18 @@ public class Maximizer61B {
      * @param comp      the Comparator to compare elements
      * @return          the maximum element according to the comparator
      */
-    public static <T> T max(Iterable<T> iterable, Comparator<T> comp) {
-        return null;
-    }
-
-    public static void main(String[] args) {
-        // The style checker will complain about this main method, feel free to delete.
-
-        // ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
-        // ad.addLast(5);
-        // ad.addLast(12);
-        // ad.addLast(17);
-        // ad.addLast(23);
-        // System.out.println(max(ad));
+    public static<T> T max(Iterable<T> iterable, Comparator<T> comp) {
+        T maxItem = null;
+        Iterator<T> seer = iterable.iterator();
+        if (seer.hasNext()) {
+            maxItem = seer.next();
+        }
+        for (T item : iterable) {
+            int cmp = comp.compare(item, maxItem);
+            if (cmp > 0) {
+                maxItem = item;
+            }
+        }
+        return maxItem;
     }
 }
