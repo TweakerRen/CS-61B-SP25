@@ -114,4 +114,16 @@ public class TestBSTMapExtra {
         assertThat(noChild.get('Z')).isNull();
     }
 
+    @Test
+    public void testIterator() {
+        BSTMap<String,String> q = new BSTMap<>();
+        q.put("c","a");
+        q.put("b","a");
+        q.put("a","a");
+        q.put("d","a");
+        q.put("e","a");
+        for (String key : q) {
+            System.out.println(key);
+        }
+    }
 }

@@ -1,0 +1,15 @@
+Please enter desired length of each string: 9
+
+Enter # strings to insert into the maps: #whateverr
+Please enter a positive integer: 11111
+class ULLMap: 0.20 sec
+class BSTMap: 0.01 sec
+Java's Built-in TreeMap: 0.01 sec
+Java's Built-in HashMap: 0.00 sec
+
+Enter # strings to insert into the maps: #
+Please enter a positive integer: 1111111
+--Stack Overflow -- couldn't add 1111111 strings of length 9.
+class BSTMap: 1.34 sec
+Java's Built-in TreeMap: 1.00 sec
+Java's Built-in HashMap: 0.37 sec
